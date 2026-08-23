@@ -11,8 +11,8 @@ import { useParams } from "react-router-dom";
 import { PageHero } from "../components/shared/PageHero";
 import { useSimulationStorage } from "../hooks/useSimulationStorage";
 import { calcMonthlySavings } from "../utils/simulation";
-import { Card } from "../components/features/Simulation/SimulationResults/Card";
-import { AIInsightsCard } from "../components/features/Simulation/SimulationResults/AIInsightCardProps";
+import { Card } from "../components/features/SimulationResults/Card";
+import { AIInsightsCard } from "../components/features/SimulationResults/AIInsightCardProps";
 
 export function SimulationResultsPage() {
   const { id } = useParams<{ id: string }>();

@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from "react";
 
-import type { InsightData } from "../../../../services/aiService";
+import type { InsightData } from "../../../services/aiService";
 
 interface ContentProps {
   insight: InsightData;

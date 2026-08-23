@@ -34,6 +34,14 @@ export const useSimulationStorage = () => {
     return savedData.find((record) => record.id === id) || null;
   };
 
+  const getAllFormData = (id: string) => {
+    const storage = localStorage.getItem(LOCAL_STORAGE_KEY);
+
+    if (!storage) {
+      return null;
+    }
+  };
+
   const updateSimulation = (id: string, data: SimulationRecord) => {
     const storage = localStorage.getItem(LOCAL_STORAGE_KEY);
     const savedData = storage
