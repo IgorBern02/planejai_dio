@@ -20,10 +20,12 @@ export function Button({
   icon: Icon,
   children,
   className,
+  onClick,
   ...props
 }: ButtonProps) {
   return (
     <button
+      onClick={onClick}
       {...props}
       className={[baseClasses, variantClasses[variant], className].join(" ")}
     >

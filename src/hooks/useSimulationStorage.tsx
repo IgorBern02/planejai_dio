@@ -3,12 +3,16 @@ import {
   type SimulationRecord,
 } from "../data/simulation";
 
+import { formatDate } from "../utils/formatDate";
+
 const LOCAL_STORAGE_KEY = "simulation-data";
 
 export const useSimulationStorage = () => {
   const saveFormData = (formData: SimulationFormData) => {
     const id = crypto.randomUUID();
-    const record: SimulationRecord = { ...formData, id };
+    const date = formatDate(new Date());
+
+    const record: SimulationRecord = { ...formData, id, date };
 
     const storage = localStorage.getItem(LOCAL_STORAGE_KEY);
     const savedData = storage
@@ -34,12 +38,14 @@ export const useSimulationStorage = () => {
     return savedData.find((record) => record.id === id) || null;
   };
 
-  const getAllFormData = (id: string) => {
+  const getHistory = () => {
     const storage = localStorage.getItem(LOCAL_STORAGE_KEY);
 
-    if (!storage) {
-      return null;
-    }
+    const savedData = storage
+      ? (JSON.parse(storage) as SimulationRecord[])
+      : [];
+
+    return savedData;
   };
 
   const updateSimulation = (id: string, data: SimulationRecord) => {
@@ -55,5 +61,5 @@ export const useSimulationStorage = () => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updated));
   };
 
-  return { saveFormData, getFormData, updateSimulation };
+  return { saveFormData, getFormData, getHistory, updateSimulation };
 };
