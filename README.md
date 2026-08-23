@@ -158,21 +158,29 @@ O id é gerado utilizando crypto.randomUUID().
 
 Clone o repositório:
 
+```
 git clone https://github.com/IgorBern02/planejai.git
+```
 
 Entre na pasta:
 
+```
 cd planejai
+```
 
 Instale as dependências:
 
+```
 npm install
+```
 
 Configure o arquivo .env com sua chave do Gemini.
 
 Execute o projeto:
 
+```
 npm run dev
+```
 
 A aplicação estará disponível no endereço fornecido pelo Vite.
 
