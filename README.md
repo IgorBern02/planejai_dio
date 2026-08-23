@@ -180,35 +180,35 @@ A aplicação estará disponível no endereço fornecido pelo Vite.
 
 Durante o desenvolvimento e evolução do projeto, foram praticados conceitos como:
 
-Consumo de API utilizando fetch
-Integração com IA Generativa
-Criação de prompts estruturados
-Manipulação de respostas JSON
-React Hooks
-Custom Hooks
-Componentização
-Props e tipagem com TypeScript
-React Router
-Persistência utilizando localStorage
-Gerenciamento de estado
-Organização de serviços
-Separação de responsabilidades
-Tratamento de erros
-Loading states
-Reutilização de componentes
+- Consumo de API utilizando fetch
+- Integração com IA Generativa
+- Criação de prompts estruturados
+- Manipulação de respostas JSON
+- React Hooks
+- Custom Hooks
+- Componentização
+- Props e tipagem com TypeScript
+- React Router
+- Persistência utilizando localStorage
+- Gerenciamento de estado
+- Organização de serviços
+- Separação de responsabilidades
+- Tratamento de erros
+- Loading states
+- Reutilização de componentes
 
 🔨 Melhorias desenvolvidas
 
 Além das funcionalidades propostas originalmente no desafio, foram implementadas:
 
- Histórico de simulações
- Visualização de resultados anteriores
- Exclusão individual de simulações
- Chat com o Gemini
- Contexto da simulação enviado ao chat
- Histórico de mensagens durante a conversa
- Componentização do chat
- Separação do serviço de comunicação com o Gemini
+- Histórico de simulações
+- Visualização de resultados anteriores
+- Exclusão individual de simulações
+- Chat com o Gemini
+- Contexto da simulação enviado ao chat
+- Histórico de mensagens durante a conversa
+- Componentização do chat
+- Separação do serviço de comunicação com o Gemini
 
  👨‍💻 Autor
 
