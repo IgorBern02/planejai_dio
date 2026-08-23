@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { useSimulationStorage } from "../hooks/useSimulationStorage";
 import { PageHero } from "../components/shared/PageHero";
 import { Card } from "../components/features/SimulationHistory/Card";
@@ -6,11 +7,27 @@ import { Card } from "../components/features/SimulationHistory/Card";
 import { Calendar } from "lucide-react";
 
 export const SimulationHistoryPage = () => {
-  const { getHistory } = useSimulationStorage();
+  const { getHistory, deleteSimulation } = useSimulationStorage();
 
-  const history = getHistory();
+  const [history, setHistory] = useState(getHistory());
 
   const navigate = useNavigate();
+
+  const handleDelete = (id: string) => {
+    const confirmed = window.confirm(
+      "Tem certeza que deseja excluir esta simulação?",
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    deleteSimulation(id);
+
+    setHistory((current) =>
+      current.filter((simulation) => simulation.id !== id),
+    );
+  };
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-10 sm:py-14">
@@ -30,6 +47,7 @@ export const SimulationHistoryPage = () => {
                     value={simulation.goalName}
                     subtitle={simulation.date}
                     onClick={() => navigate(`/resultado/${simulation.id}`)}
+                    onDelete={() => handleDelete(simulation.id)}
                   />
                 </li>
               </>

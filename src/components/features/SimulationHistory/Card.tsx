@@ -1,4 +1,4 @@
-import type { LucideIcon } from "lucide-react";
+import { Trash2, type LucideIcon } from "lucide-react";
 import { Button } from "../../shared/Button";
 
 interface CardProps {
@@ -8,6 +8,7 @@ interface CardProps {
   subtitle: string;
   variant?: "default" | "primary";
   onClick?: () => void;
+  onDelete?: () => void;
 }
 
 const variantClasses = {
@@ -32,6 +33,7 @@ export function Card({
   subtitle,
   variant = "default",
   onClick,
+  onDelete,
 }: CardProps) {
   const styles = variantClasses[variant];
 
@@ -62,9 +64,12 @@ export function Card({
             {subtitle}
           </p>
         </div>
-        <div className="mt-5">
+        <div className="mt-5 flex items-center justify-between">
           <Button type="button" variant="primary" onClick={onClick}>
             Ver Resultado
+          </Button>
+          <Button type="button" variant="primary" onClick={onDelete}>
+            <Trash2 size={20} />
           </Button>
         </div>
       </div>
