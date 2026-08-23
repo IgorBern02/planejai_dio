@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { Button } from "../components/shared/Button";
 import { useSimulationStorage } from "../hooks/useSimulationStorage";
 import { PageHero } from "../components/shared/PageHero";
+import { Card } from "../components/features/SimulationHistory/Card";
+
+import { Calendar } from "lucide-react";
 
 export const SimulationHistoryPage = () => {
   const { getHistory } = useSimulationStorage();
@@ -16,29 +18,21 @@ export const SimulationHistoryPage = () => {
         title="Histórico"
         subtitle="Mostrando todas as suas simulações."
       />
-      <ul className="flex flex-col gap-5 p-2 mt-10">
+      <ul className="flex flex-col gap-5 p-2 ">
         {history && history.length > 0 ? (
-          <ul className="flex flex-col gap-5 p-2 mt-10">
+          <ul className="flex flex-col gap-5 p-2 ">
             {history.map((simulation) => (
-              <li
-                key={simulation.id}
-                className="rounded-lg border p-4 shadow-sm flex flex-col sm:flex-row justify-between items-center gap-4"
-              >
-                <div>
-                  <p className="font-medium">Objetivo: {simulation.goalName}</p>
-                  <p className="text-sm text-gray-500">
-                    Data: {simulation.date}
-                  </p>
-                </div>
-
-                <Button
-                  type="button"
-                  variant="primary"
-                  onClick={() => navigate(`/resultado/${simulation.id}`)}
-                >
-                  Ver Resultado
-                </Button>
-              </li>
+              <>
+                <li>
+                  <Card
+                    icon={Calendar}
+                    label="Meta"
+                    value={simulation.goalName}
+                    subtitle={simulation.date}
+                    onClick={() => navigate(`/resultado/${simulation.id}`)}
+                  />
+                </li>
+              </>
             ))}
           </ul>
         ) : (
