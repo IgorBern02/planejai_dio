@@ -5,10 +5,10 @@ import {
   type SimulationFormData,
   simulationFormSteps,
 } from "../../../data/simulation";
-import { useSimulationStorage } from "@/hooks/useSimulationStorage";
+import { useSimulationStorage } from "../../../hooks/useSimulationStorage";
 
-import { FormStep } from "./FormStep";
 import { StepProgress } from "./Progress";
+import { FormStep } from "./FormStep";
 
 export const SimulationForm = () => {
   const { saveFormData } = useSimulationStorage();
