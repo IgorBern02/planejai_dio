@@ -1,18 +1,22 @@
 import "react-loading-skeleton/dist/skeleton.css";
 
+import Skeleton from "react-loading-skeleton";
+
 import { useInsight } from "../../../hooks/useInsight";
 
 import { Content } from "../Insights/Content";
 import { Error } from "../Insights/Error";
-import Skeleton from "react-loading-skeleton";
+
+import type { SimulationRecord } from "../../../data/simulation";
+
+import { FinancialChat } from "./FinancialChat";
 
 interface AIInsightCardProps {
-  simulationId: string;
+  simulation: SimulationRecord;
 }
 
-export function AIInsightsCard({ simulationId }: AIInsightCardProps) {
-  const { insight, isLoading, error, fetchInsight } = useInsight(simulationId);
-  console.log(insight);
+export function AIInsightsCard({ simulation }: AIInsightCardProps) {
+  const { insight, isLoading, error, fetchInsight } = useInsight(simulation.id);
 
   return (
     <div className="bg-card order-2 rounded-2xl p-6 shadow-[4px_4px_18px_0px_rgba(0,0,0,0.2)] lg:order-1 lg:col-span-2">
@@ -23,28 +27,25 @@ export function AIInsightsCard({ simulationId }: AIInsightCardProps) {
         </span>
       </div>
 
-      {isLoading && (
-        <div className="flex">
-          <Skeleton
-            count={10.5}
-            baseColor="var(--color-skeleton-base)"
-            highlightColor="var(--color-skeleton-highlight)"
-            className="mb-3 flex rounded-lg"
-            containerClassName="flex-1"
-            inline
-          />
-        </div>
-      )}
+      {isLoading && <Skeleton />}
+
       {!isLoading && error && (
         <Error
-          simulationId={simulationId}
+          simulationId={simulation.id}
           message={error}
           onRetry={() => {
-            fetchInsight(simulationId);
+            fetchInsight(simulation.id);
           }}
         />
       )}
-      {!isLoading && insight && !error && <Content insight={insight} />}
+
+      {!isLoading && insight && !error && (
+        <>
+          <Content insight={insight} />
+
+          <FinancialChat simulation={simulation} />
+        </>
+      )}
     </div>
   );
 }
