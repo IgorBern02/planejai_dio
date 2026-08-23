@@ -1,75 +1,231 @@
-# React + TypeScript + Vite
+# Planejaí 💰
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Educador Financeiro Inteligente desenvolvido com React e IA Generativa utilizando o Gemini.
 
-Currently, two official plugins are available:
+O projeto foi desenvolvido a partir do desafio **"Desenvolvendo Seu Educador Financeiro Inteligente Com React E IA Generativa"**, proposto pela [Digital Innovation One (DIO)](https://www.dio.me/).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Além da implementação proposta no desafio, foram desenvolvidas funcionalidades adicionais para melhorar a experiência do usuário e tornar a aplicação mais completa.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Funcionalidades
 
-## Expanding the ESLint configuration
+### 📊 Simulação financeira
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+O usuário informa seus principais dados financeiros:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Renda mensal
+- Custos fixos
+- Dívidas e parcelas
+- Nome da meta
+- Valor da meta
+- Prazo desejado
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+A aplicação utiliza esses dados para calcular a capacidade mensal de economia e analisar a viabilidade do objetivo.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
 
+### 🤖 Educador financeiro com IA
+
+A aplicação utiliza o **Google Gemini** para gerar um diagnóstico financeiro personalizado.
+
+A IA analisa:
+
+- Viabilidade da meta
+- Comprometimento da renda
+- Organização financeira
+- Sugestões para redução de gastos
+- Possibilidades de renda extra
+- Sugestões de investimentos
+- Mensagem motivacional personalizada
+
+As respostas são apresentadas diretamente na página de resultados.
+
+---
+
+## 💬 Chat com o Gemini
+
+Como melhoria em relação ao projeto original, foi desenvolvido um chat integrado ao Gemini.
+
+Após receber o diagnóstico financeiro, o usuário pode continuar a conversa com o educador financeiro e fazer perguntas relacionadas à sua simulação.
+
+O chat utiliza como contexto:
+
+- Renda mensal
+- Custos fixos
+- Dívidas e parcelas
+- Objetivo financeiro
+- Valor da meta
+- Prazo desejado
+- Histórico da conversa
+
+Dessa forma, as respostas podem ser relacionadas diretamente à situação financeira informada pelo usuário.
+
+---
+
+## 📝 Histórico de simulações
+
+Foi implementada uma nova página de histórico para permitir que o usuário consulte suas simulações anteriores.
+
+Cada registro apresenta:
+
+- 🎯 Objetivo
+- 📅 Data da simulação
+- 🔎 Botão para visualizar novamente o resultado
+- 🗑️ Opção para excluir a simulação
+
+As simulações são armazenadas no `localStorage` do navegador.
+
+---
+
+## 🗑️ Exclusão de simulações
+
+O usuário pode excluir individualmente uma simulação do histórico.
+
+Antes da exclusão, a aplicação solicita uma confirmação para evitar remoções acidentais.
+
+---
+
+## 🧩 Estrutura do projeto
+
+A aplicação foi organizada utilizando componentes, hooks, serviços e arquivos de dados separados.
+
+```text
+src/
+├── components/
+│   ├── features/
+│   │   └── SimulationResults/
+│   │       ├── AIInsightsCard.tsx
+│   │       ├── FinancialChat.tsx
+│   │       └── ChatMessage.tsx
+│   │
+│   └── shared/
+│
+├── data/
+│   ├── aiPrompt.ts
+│   └── simulation.ts
+│
+├── hooks/
+│   ├── useInsight.ts
+│   ├── useSimulationStorage.ts
+│   └── useFinancialChat.ts
+│
+├── services/
+│   ├── geminiService.ts
+│   └── aiService.ts
+│
+├── pages/
+│   ├── SimulationFormPage.tsx
+│   ├── SimulationResultsPage.tsx
+│   └── SimulationHistoryPage.tsx
+│
+└── utils/
+│   ├── currency.ts
+│   ├── formatDate.ts
+│   └── simulation.ts
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+🛠️ Tecnologias utilizadas
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- React Router
+- Lucide React
+- Google Gemini API
+- LocalStorage
+- React Loading Skeleton
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+💾 Armazenamento
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+As simulações são armazenadas utilizando o localStorage.
 
-```
+Cada registro possui informações como:
+
+interface SimulationRecord {
+  id: string;
+  date: string;
+  income: string;
+  expenses: string;
+  debts: string;
+  goalName: string;
+  goalAmount: string;
+  goalDeadline: string;
+  insight?: InsightData;
+}
+
+O id é gerado utilizando crypto.randomUUID().
+
+Clone o repositório:
+
+git clone https://github.com/IgorBern02/planejai.git
+
+Entre na pasta:
+
+cd planejai
+
+Instale as dependências:
+
+npm install
+
+Configure o arquivo .env com sua chave do Gemini.
+
+Execute o projeto:
+
+npm run dev
+
+A aplicação estará disponível no endereço fornecido pelo Vite.
+
+📚 Aprendizados
+
+Durante o desenvolvimento e evolução do projeto, foram praticados conceitos como:
+
+Consumo de API utilizando fetch
+Integração com IA Generativa
+Criação de prompts estruturados
+Manipulação de respostas JSON
+React Hooks
+Custom Hooks
+Componentização
+Props e tipagem com TypeScript
+React Router
+Persistência utilizando localStorage
+Gerenciamento de estado
+Organização de serviços
+Separação de responsabilidades
+Tratamento de erros
+Loading states
+Reutilização de componentes
+
+🔨 Melhorias desenvolvidas
+
+Além das funcionalidades propostas originalmente no desafio, foram implementadas:
+
+ Histórico de simulações
+ Visualização de resultados anteriores
+ Exclusão individual de simulações
+ Chat com o Gemini
+ Contexto da simulação enviado ao chat
+ Histórico de mensagens durante a conversa
+ Componentização do chat
+ Separação do serviço de comunicação com o Gemini
+
+ 👨‍💻 Autor
+
+Igor Bernardes
+
+Desenvolvedor Full Stack com foco em Front-end.
+
+Tecnologias
+
+React • TypeScript • JavaScript • HTML • CSS • Tailwind CSS • Node.js • Git
+
+📌 Projeto original
+
+Este projeto foi desenvolvido a partir do desafio da Digital Innovation One:
+
+Desenvolvendo Seu Educador Financeiro Inteligente Com React E IA Generativa
+
+Repositório base:
+
+https://github.com/digitalinnovationone/planejai
